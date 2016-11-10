@@ -12,6 +12,7 @@
 		176F79601DD53A5300522ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F795E1DD53A5300522ABA /* Main.storyboard */; };
 		176F79621DD53A5300522ABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F79611DD53A5300522ABA /* Assets.xcassets */; };
 		176F79651DD53A5300522ABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F79631DD53A5300522ABA /* LaunchScreen.storyboard */; };
+		EBE10A36ADC43E4A1A64AFF8 /* Pods_InspiratoSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		176F79611DD53A5300522ABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176F79641DD53A5300522ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		176F79661DD53A5300522ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiratoSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		D81DC0D4D83365F2DACB1B5F /* Pods-InspiratoSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE10A36ADC43E4A1A64AFF8 /* Pods_InspiratoSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				176F79591DD53A5300522ABA /* InspiratoSearch */,
 				176F79581DD53A5300522ABA /* Products */,
+				744764453127D4F72CA358BF /* Pods */,
+				BF7818658F4A7070122357A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = InspiratoSearch;
 			sourceTree = "<group>";
 		};
+		744764453127D4F72CA358BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */,
+				D81DC0D4D83365F2DACB1B5F /* Pods-InspiratoSearch.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF7818658F4A7070122357A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 176F79691DD53A5300522ABA /* Build configuration list for PBXNativeTarget "InspiratoSearch" */;
 			buildPhases = (
+				D389313AF3399DE7928B30FE /* [CP] Check Pods Manifest.lock */,
 				176F79531DD53A5200522ABA /* Sources */,
 				176F79541DD53A5200522ABA /* Frameworks */,
 				176F79551DD53A5200522ABA /* Resources */,
+				989321EAEA6C82872D346379 /* [CP] Embed Pods Frameworks */,
+				34ECAAA01A5DDE192A6F0F6A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34ECAAA01A5DDE192A6F0F6A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		989321EAEA6C82872D346379 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D389313AF3399DE7928B30FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		176F79531DD53A5200522ABA /* Sources */ = {
@@ -256,6 +331,7 @@
 		};
 		176F796A1DD53A5300522ABA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = InspiratoSearch/Info.plist;
@@ -268,6 +344,7 @@
 		};
 		176F796B1DD53A5300522ABA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D81DC0D4D83365F2DACB1B5F /* Pods-InspiratoSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = InspiratoSearch/Info.plist;
