@@ -5,4 +5,5 @@ target 'InspiratoSearch' do
   
   pod 'Alamofire', '~> 4.0.1'
   pod 'UnboxedAlamofire', '~> 2.0.1'
+  pod 'AlamofireImage', '~> 3.1.0'
 end
