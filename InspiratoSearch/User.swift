@@ -19,10 +19,10 @@ struct User {
 
 extension User: Unboxable {
     init(unboxer: Unboxer) throws {
-        self.username = try unboxer.unbox(keyPath: "photos.user.username")
-        self.fullName = try unboxer.unbox(keyPath: "photos.user.fullname")
-        self.city = try unboxer.unbox(keyPath: "photos.user.city")
-        self.userImageURL = try unboxer.unbox(keyPath: "photos.user.userpic_url")
+        self.username = try unboxer.unbox(key: "username")
+        self.fullName = try unboxer.unbox(key: "fullname")
+        self.city = try unboxer.unbox(key: "city")
+        self.userImageURL = try unboxer.unbox(key: "userpic_url")
 
     }
 }

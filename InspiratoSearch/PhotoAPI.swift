@@ -22,19 +22,20 @@ final class PhotoAPI {
         "consumer_key": "L1Yj9o68dZub8KbSSYEdCrQG5G4tapkehKgqYVKt"
     ]
     
-    func searchPhotos(keyword term: String, page: String?, completion: Completion?) {
+    func searchPhotos(keyword term: String, page: String = "1", completion: Completion?) {
+        
         let urlParams = [
             "term": term,
             "page": page
         ]
-        get(endpoint: "photos/search", parameters: urlParams, completion: nil)
+        get(endpoint: "photos/search", parameters: urlParams, completion: completion)
     }
     
     // Convenience method to perform a GET request on an API endpoint.
     private func get(endpoint: String, parameters: Parameters?, completion: Completion?) {
         request(endpoint: endpoint,
                 method: .get,
-                encoding: JSONEncoding.default,
+                encoding: URLEncoding.default,
                 parameters: parameters,
                 completion: completion
         )
@@ -53,20 +54,9 @@ final class PhotoAPI {
     // Perform a request on an API endpoint using Alamofire.
     private func request(endpoint: String, method: HTTPMethod, encoding: ParameterEncoding, parameters: Parameters?, completion: Completion?) {
         
-        let urlParams = [
-            "term":"computer",
-            "consumer_key":"L1Yj9o68dZub8KbSSYEdCrQG5G4tapkehKgqYVKt",
-            "page":"1",
-        ]
-        Alamofire.request("https://api.500px.com/v1/photos/search", method: .get, parameters: urlParams)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                if (response.result.error == nil) {
-                    debugPrint("HTTP Response Body: \(response.data)")
-                }
-                else {
-                    debugPrint("HTTP Request failed: \(response.result.error)")
-                }
+        let url = apiBaseURL + endpoint
+        Alamofire.request(url, method: method, parameters: allParameters(parameters), encoding: encoding).responseArray(keyPath: "photos") { (response: DataResponse<[Photo]>) in
+            print(response.result.value)
         }
     }
     

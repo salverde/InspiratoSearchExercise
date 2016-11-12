@@ -11,7 +11,7 @@ import Unbox
 
 struct Photo {
     let name: String
-    let description: String
+    let description: String?
     let width: Int
     let height: Int
     let nsfw: Bool
@@ -25,17 +25,17 @@ struct Photo {
 extension Photo: Unboxable {
     init(unboxer: Unboxer) throws {
         
-        self.name = try unboxer.unbox(keyPath: "photos.name")
-        self.description = try unboxer.unbox(keyPath: "photos.description")
-        self.width = try unboxer.unbox(keyPath: "photos.width")
-        self.height = try unboxer.unbox(keyPath: "photos.height")
-        self.nsfw = try unboxer.unbox(keyPath: "photos.nsfw")
-        self.imageURL = try unboxer.unbox(keyPath: "photos.image_url")
-        self.imageFormat = try unboxer.unbox(keyPath: "photos.image_format")
-        self.user = unboxer.unbox(keyPath: "photos.user")
+        self.name = try unboxer.unbox(key: "name")
+        self.description = unboxer.unbox(key: "description")
+        self.width = try unboxer.unbox(key: "width")
+        self.height = try unboxer.unbox(key: "height")
+        self.nsfw = try unboxer.unbox(key: "nsfw")
+        self.imageURL = try unboxer.unbox(key: "image_url")
+        self.imageFormat = try unboxer.unbox(key: "image_format")
+        self.user = unboxer.unbox(keyPath: "user")
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
-        self.createdAt = unboxer.unbox(keyPath: "photos.created_at", formatter: dateFormatter)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        self.createdAt = unboxer.unbox(keyPath: "created_at", formatter: dateFormatter)
     }
 }
