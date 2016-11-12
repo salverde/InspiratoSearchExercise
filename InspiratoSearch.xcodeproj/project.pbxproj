@@ -17,7 +17,6 @@
 		176F79741DD6740F00522ABA /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F79731DD6740F00522ABA /* PhotoAPI.swift */; };
 		176F79781DD6E3E700522ABA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F79771DD6E3E700522ABA /* Extensions.swift */; };
 		176F797A1DD6E61400522ABA /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F79791DD6E61400522ABA /* AppAppearance.swift */; };
-		176F797C1DD6EC2900522ABA /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F797B1DD6EC2900522ABA /* TestCollectionViewController.swift */; };
 		176F797F1DD705B700522ABA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F797E1DD705B700522ABA /* PhotoCell.swift */; };
 		EBE10A36ADC43E4A1A64AFF8 /* Pods_InspiratoSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */; };
 /* End PBXBuildFile section */
@@ -35,7 +34,6 @@
 		176F79731DD6740F00522ABA /* PhotoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
 		176F79771DD6E3E700522ABA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		176F79791DD6E61400522ABA /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
-		176F797B1DD6EC2900522ABA /* TestCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		176F797E1DD705B700522ABA /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiratoSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				176F79731DD6740F00522ABA /* PhotoAPI.swift */,
 				176F79771DD6E3E700522ABA /* Extensions.swift */,
 				176F79791DD6E61400522ABA /* AppAppearance.swift */,
-				176F797B1DD6EC2900522ABA /* TestCollectionViewController.swift */,
 			);
 			path = InspiratoSearch;
 			sourceTree = "<group>";
@@ -248,7 +245,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				176F797C1DD6EC2900522ABA /* TestCollectionViewController.swift in Sources */,
 				176F797F1DD705B700522ABA /* PhotoCell.swift in Sources */,
 				176F79701DD66F1900522ABA /* User.swift in Sources */,
 				176F79781DD6E3E700522ABA /* Extensions.swift in Sources */,

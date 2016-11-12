@@ -49,10 +49,6 @@ class ViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
     
-//    func photoForIndexPath(indexPath: IndexPath) -> String {
-//        
-//        return searches[(indexPath as NSIndexPath).section].searchResults[(indexPath as NSIndexPath).row]
-//    }
 }
 
 extension ViewController: UICollectionViewDataSource {
