@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import UnboxedAlamofire
 
-typealias Completion = () -> ()
+typealias Completion = ([Photo]) -> ()
 
 final class PhotoAPI {
     
@@ -55,8 +55,15 @@ final class PhotoAPI {
     private func request(endpoint: String, method: HTTPMethod, encoding: ParameterEncoding, parameters: Parameters?, completion: Completion?) {
         
         let url = apiBaseURL + endpoint
-        Alamofire.request(url, method: method, parameters: allParameters(parameters), encoding: encoding).responseArray(keyPath: "photos") { (response: DataResponse<[Photo]>) in
-            print(response.result.value)
+        let urlParams = allParameters(parameters)
+        Alamofire.request(url, method: method, parameters: urlParams, encoding: encoding).validate(statusCode: 200..<300).responseArray(keyPath: "photos") { (response: DataResponse<[Photo]>) in
+            switch response.result {
+            case .success(let photos):
+                print("success: \(photos.count)")
+                completion?(photos)
+            case .failure(let error):
+                print("error: \(error)")
+            }
         }
     }
     

@@ -12,6 +12,8 @@ import UnboxedAlamofire
 
 class ViewController: UIViewController {
 
+    var photos: [Photo]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
     
     private func fetchPhotos() {
         PhotoAPI.sharedInstance.searchPhotos(keyword: "computer", page: "1") {
-            print("searchPhotos block")
+            self.photos = $0
         }
     }
 }
