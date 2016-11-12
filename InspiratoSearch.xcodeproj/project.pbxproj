@@ -73,10 +73,10 @@
 		176F79591DD53A5300522ABA /* InspiratoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				17E8DCD11DD782D800B37E8C /* ViewControllers */,
 				176F797D1DD7059400522ABA /* Views */,
 				176F796E1DD66F0C00522ABA /* Models */,
 				176F795A1DD53A5300522ABA /* AppDelegate.swift */,
-				176F795C1DD53A5300522ABA /* ViewController.swift */,
 				176F795E1DD53A5300522ABA /* Main.storyboard */,
 				176F79611DD53A5300522ABA /* Assets.xcassets */,
 				176F79631DD53A5300522ABA /* LaunchScreen.storyboard */,
@@ -103,6 +103,14 @@
 				176F797E1DD705B700522ABA /* PhotoCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		17E8DCD11DD782D800B37E8C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				176F795C1DD53A5300522ABA /* ViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		744764453127D4F72CA358BF /* Pods */ = {

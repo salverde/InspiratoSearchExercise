@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 40.0, left: 10.0, bottom: 40.0, right: 10.0)
     fileprivate let itemsPerRow: CGFloat = 3
     
-    @IBOutlet weak var photoSearchBar: UISearchBar!
     @IBOutlet weak var photosCollectionView: UICollectionView!
+    var searchController: UISearchController!
     
     var photos: [Photo]?
     
@@ -26,9 +26,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "navbar-logo"))
+//        self.navigationItem.titleView = UIImageView(image: UIImage(named: "navbar-logo"))
         
-        photoSearchBar.delegate = self
+        self.searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.definesPresentationContext = true
+        self.navigationItem.titleView = searchController.searchBar
+        
         photosCollectionView.dataSource = self
         photosCollectionView.delegate = self
         
@@ -53,8 +58,11 @@ class ViewController: UIViewController {
      }
 }
 
-extension ViewController: UISearchBarDelegate {
-    <#code#>
+extension ViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -70,20 +78,21 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-        
-        // Configure the cell
-        cell.backgroundColor = UIColor.inspiratoGray()
-        if let title = photos?[indexPath.row].name {
-            cell.photoName.text = title
+        var cell = PhotoCell()
+        if let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell {
+            // Configure the cell
+            photoCell.backgroundColor = UIColor.inspiratoGray()
+            if let title = photos?[indexPath.row].name {
+                photoCell.photoName.text = title
+            }
+            if let imageURL = photos?[indexPath.row].imageURL {
+                let url = URL(string: imageURL)!
+                // TODO
+                // add placeholder image with imageView extension
+                photoCell.imageView.af_setImage(withURL: url)
+            }
+            cell = photoCell
         }
-        if let imageURL = photos?[indexPath.row].imageURL {
-            let url = URL(string: imageURL)!
-            // TODO
-            // add placeholder image with imageView extension
-            cell.imageView.af_setImage(withURL: url)
-        }
-        
         return cell
     }
 }
