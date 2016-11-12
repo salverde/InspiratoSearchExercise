@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yZj-7L-utg">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zuk-SN-MI6">
                                     <size key="itemSize" width="200" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -29,29 +29,32 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="8nk-ab-bve" customClass="PhotoCell" customModule="InspiratoSearch" customModuleProvider="target">
-                                        <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
+                                        <rect key="frame" x="88" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some long name that spans multiple lines" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKe-ZH-PdW">
-                                                    <frame key="frameInset" minX="8" minY="8" width="95" height="65"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some long name that spans multiple lines" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKe-ZH-PdW">
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-v7-Rr4">
-                                                    <frame key="frameInset" minX="1" width="199" height="200"/>
-                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-v7-Rr4"/>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="XNL-v7-Rr4" firstAttribute="top" secondItem="8nk-ab-bve" secondAttribute="topMargin" id="4EC-DW-ZJv"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="XNL-v7-Rr4" secondAttribute="trailing" id="9k3-65-hBi"/>
+                                            <constraint firstItem="XNL-v7-Rr4" firstAttribute="top" secondItem="8nk-ab-bve" secondAttribute="top" id="ByC-OJ-OSJ"/>
+                                            <constraint firstItem="dKe-ZH-PdW" firstAttribute="leading" secondItem="8nk-ab-bve" secondAttribute="leadingMargin" id="ByK-S7-jAh"/>
+                                            <constraint firstItem="dKe-ZH-PdW" firstAttribute="top" secondItem="8nk-ab-bve" secondAttribute="topMargin" id="CL7-XT-tqT"/>
+                                            <constraint firstAttribute="bottom" secondItem="XNL-v7-Rr4" secondAttribute="bottom" id="Kfw-Y6-3eK"/>
                                             <constraint firstItem="XNL-v7-Rr4" firstAttribute="leading" secondItem="8nk-ab-bve" secondAttribute="leadingMargin" constant="1" id="OyD-Va-k3R"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="XNL-v7-Rr4" secondAttribute="bottom" id="QG6-ez-mQn"/>
+                                            <constraint firstAttribute="trailing" secondItem="XNL-v7-Rr4" secondAttribute="trailing" id="Ued-hm-K3P"/>
+                                            <constraint firstItem="XNL-v7-Rr4" firstAttribute="centerX" secondItem="8nk-ab-bve" secondAttribute="centerX" id="YEC-CX-qNy"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="dKe-ZH-PdW" secondAttribute="trailing" constant="89" id="d7p-3g-DCk"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="XNL-v7-Rr4" id="J7L-eS-Etw"/>
@@ -60,17 +63,24 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" barStyle="black" placeholder="Search Photos" translatesAutoresizingMaskIntoConstraints="NO" id="wOj-7U-AEy">
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yZj-7L-utg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ek3-UV-y5a"/>
-                            <constraint firstAttribute="trailing" secondItem="yZj-7L-utg" secondAttribute="trailing" id="fmb-Pt-Fbn"/>
-                            <constraint firstItem="yZj-7L-utg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mzq-yS-i1r"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yZj-7L-utg" secondAttribute="bottom" constant="8" symbolic="YES" id="oph-ea-ShW"/>
+                            <constraint firstItem="yZj-7L-utg" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="3jt-Ie-JLx"/>
+                            <constraint firstItem="wOj-7U-AEy" firstAttribute="leading" secondItem="yZj-7L-utg" secondAttribute="leading" id="9oX-hE-J16"/>
+                            <constraint firstItem="wOj-7U-AEy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CAi-V7-CiB"/>
+                            <constraint firstItem="wOj-7U-AEy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mze-Dx-cgK"/>
+                            <constraint firstAttribute="trailing" secondItem="wOj-7U-AEy" secondAttribute="trailing" id="SLS-79-d8x"/>
+                            <constraint firstItem="wOj-7U-AEy" firstAttribute="trailing" secondItem="yZj-7L-utg" secondAttribute="trailing" id="TOs-bU-VTc"/>
+                            <constraint firstItem="yZj-7L-utg" firstAttribute="top" secondItem="wOj-7U-AEy" secondAttribute="bottom" id="zOg-ge-fEv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LKg-XK-iTt"/>
                     <connections>
+                        <outlet property="photoSearchBar" destination="wOj-7U-AEy" id="wDt-J9-efZ"/>
                         <outlet property="photosCollectionView" destination="yZj-7L-utg" id="0Cg-e0-edP"/>
                     </connections>
                 </viewController>

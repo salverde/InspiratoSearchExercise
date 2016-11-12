@@ -14,9 +14,10 @@ import AlamofireImage
 class ViewController: UIViewController {
     
     fileprivate let reuseIdentifier = "PhotoCell"
-    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    fileprivate let sectionInsets = UIEdgeInsets(top: 40.0, left: 10.0, bottom: 40.0, right: 10.0)
     fileprivate let itemsPerRow: CGFloat = 3
     
+    @IBOutlet weak var photoSearchBar: UISearchBar!
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
     var photos: [Photo]?
@@ -24,8 +25,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.title = "Search"
         
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "navbar-logo"))
+        
+        photoSearchBar.delegate = self
         photosCollectionView.dataSource = self
         photosCollectionView.delegate = self
         
@@ -48,7 +51,10 @@ class ViewController: UIViewController {
      // Get the new view controller using [segue destinationViewController].
      // Pass the selected object to the new view controller.
      }
-    
+}
+
+extension ViewController: UISearchBarDelegate {
+    <#code#>
 }
 
 extension ViewController: UICollectionViewDataSource {

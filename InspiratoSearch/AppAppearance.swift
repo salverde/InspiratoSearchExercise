@@ -13,11 +13,12 @@ struct AppAppearance {
     
     static func navigationBar() {
         let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.barTintColor = UIColor.inspiratoGray()
+        navigationAppearance.barTintColor = UIColor.black
+        navigationAppearance.isTranslucent = false
         navigationAppearance.titleTextAttributes = [
             NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: UIFont(name: "Helvetica-Light", size: 20.0)!
         ]
-
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 }
