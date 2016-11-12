@@ -12,6 +12,9 @@
 		176F79601DD53A5300522ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F795E1DD53A5300522ABA /* Main.storyboard */; };
 		176F79621DD53A5300522ABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F79611DD53A5300522ABA /* Assets.xcassets */; };
 		176F79651DD53A5300522ABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F79631DD53A5300522ABA /* LaunchScreen.storyboard */; };
+		176F796D1DD666C100522ABA /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F796C1DD666C100522ABA /* Photo.swift */; };
+		176F79701DD66F1900522ABA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F796F1DD66F1900522ABA /* User.swift */; };
+		176F79741DD6740F00522ABA /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F79731DD6740F00522ABA /* PhotoAPI.swift */; };
 		EBE10A36ADC43E4A1A64AFF8 /* Pods_InspiratoSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,9 @@
 		176F79611DD53A5300522ABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176F79641DD53A5300522ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		176F79661DD53A5300522ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		176F796C1DD666C100522ABA /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		176F796F1DD66F1900522ABA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		176F79731DD6740F00522ABA /* PhotoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
 		37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiratoSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		D81DC0D4D83365F2DACB1B5F /* Pods-InspiratoSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.release.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +67,25 @@
 		176F79591DD53A5300522ABA /* InspiratoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				176F796E1DD66F0C00522ABA /* Models */,
 				176F795A1DD53A5300522ABA /* AppDelegate.swift */,
 				176F795C1DD53A5300522ABA /* ViewController.swift */,
 				176F795E1DD53A5300522ABA /* Main.storyboard */,
 				176F79611DD53A5300522ABA /* Assets.xcassets */,
 				176F79631DD53A5300522ABA /* LaunchScreen.storyboard */,
 				176F79661DD53A5300522ABA /* Info.plist */,
+				176F79731DD6740F00522ABA /* PhotoAPI.swift */,
 			);
 			path = InspiratoSearch;
+			sourceTree = "<group>";
+		};
+		176F796E1DD66F0C00522ABA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				176F796C1DD666C100522ABA /* Photo.swift */,
+				176F796F1DD66F1900522ABA /* User.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		744764453127D4F72CA358BF /* Pods */ = {
@@ -211,7 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				176F79701DD66F1900522ABA /* User.swift in Sources */,
+				176F796D1DD666C100522ABA /* Photo.swift in Sources */,
 				176F795D1DD53A5300522ABA /* ViewController.swift in Sources */,
+				176F79741DD6740F00522ABA /* PhotoAPI.swift in Sources */,
 				176F795B1DD53A5300522ABA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +394,7 @@
 				176F796B1DD53A5300522ABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

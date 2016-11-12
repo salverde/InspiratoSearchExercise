@@ -7,19 +7,26 @@
 //
 
 import UIKit
+import Alamofire
+import UnboxedAlamofire
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        fetchPhotos()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    private func fetchPhotos() {
+        PhotoAPI.sharedInstance.searchPhotos(keyword: "computer", page: "1") {
+            print("searchPhotos block")
+        }
+    }
 }
 
