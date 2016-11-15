@@ -36,13 +36,10 @@ class SearchViewController: UICollectionViewController {
     }()
     
     var photos: [Photo]?
-    var searchResult: [Any]?
     
     override func viewDidLoad() {
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "navbar-logo"))
-        
-        self.searchResult = [Any]()
         
         searchBar.delegate = self
         
@@ -100,14 +97,6 @@ class SearchViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-//        if self.searchBarActive {
-//            return self.dataSourceForSearchResult!.count
-//        }
-//        return self.dataSource!.count
-//        if searchBarActive {
-//            return searchResult?.count ?? 0
-//        }
         return photos?.count ?? 0
     }
     
@@ -125,15 +114,7 @@ class SearchViewController: UICollectionViewController {
                 // add placeholder image with imageView extension
                 photoCell.photoImageView.af_setImage(withURL: url)
             }
-            
-//            if (self.searchBarActive) {
-//                photoCell.photoName.text = self.dataSourceForSearchResult![indexPath.row]
-//            } else {
-//                
-//                let url = URL(string: "https://drscdn.500px.org/photo/157877509/q%3D50_w%3D140_h%3D140/f8d675f6b731ff40f33097dae8a71f61?v=3")!
-//                photoCell.photoImageView.af_setImage(withURL: url)
-//                photoCell.photoName.text = self.dataSource![indexPath.row]
-//            }
+        
             cell = photoCell
         }
         return cell
@@ -258,16 +239,10 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        // we used here to set self.searchBarActive = YES
-        // but we'll not do that any more... it made problems
-        // it's better to set self.searchBarActive = YES when user typed something
         searchBar.setShowsCancelButton(true, animated: true)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        // this method is being called when search btn in the keyboard tapped
-        // we set searchBarActive = NO
-        // but no need to reloadCollectionView
         self.searchBarActive = false
         searchBar.setShowsCancelButton(false, animated: false)
     }
