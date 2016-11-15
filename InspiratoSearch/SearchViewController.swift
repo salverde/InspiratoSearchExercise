@@ -13,9 +13,15 @@ import Alamofire
 import UnboxedAlamofire
 import AlamofireImage
 
+protocol PaginationDelegate {
+    
+    func fetchMoreItems(with activityIndicator: UIActivityIndicatorView)
+}
+
 class SearchViewController: UICollectionViewController {
     
-    let reuseIdentifier:String = "PhotoCell"
+    private let reuseIdentifier: String = "PhotoCell"
+    private let detailSegue: String = "detailPhotoSegue"
     
     var searchBarActive: Bool = false
     
@@ -35,13 +41,24 @@ class SearchViewController: UICollectionViewController {
         return loader
     }()
     
+    var searchResult: SearchResult?
     var photos: [Photo]?
+    
+    var paginationDelegate: PaginationDelegate?
+    
+    var paginationIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        
+        indicator.bounds.size.height = 65
+        return indicator
+    }()
     
     override func viewDidLoad() {
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "navbar-logo"))
         
         searchBar.delegate = self
+        paginationDelegate = self
         
         addSearchBar()
         addObservers()
@@ -81,10 +98,13 @@ class SearchViewController: UICollectionViewController {
         }
     }
     
-    func fetchPhotos(with term: String) {
+    func fetchPhotos(with term: String, on page: String) {
         startRefreshControl()
-        PhotoAPI.sharedInstance.searchPhotos(keyword: term, page: "1") {
-            self.photos = $0
+        PhotoAPI.shared.search(keyword: term, page: page) {
+            if let photos = $0.photos {
+                self.photos = photos
+            }
+            self.searchResult = $0
             self.collectionView?.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -161,7 +181,7 @@ class SearchViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailPhotoSegue" {
+        if segue.identifier == detailSegue {
             guard let indexPath = collectionView?.indexPath(for: sender as! PhotoCell) else { return }
             if let detailController = segue.destination as? DetailViewController {
                 let backItem = UIBarButtonItem()
@@ -172,55 +192,58 @@ class SearchViewController: UICollectionViewController {
         }
     }
     
-//    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        // Calculate where the collection view should be at the right-hand end item
-//        let fullyScrolledContentOffset: CGFloat = (collectionView?.frame.size.height)! * CGFloat(dataSource!.count - 1)
-////        let fullyScrolledContentOffset:CGFloat = infiniteScrollingCollectionView.frame.size.width * CGFloat(photosUrlArray.count - 1)
-//        if (scrollView.contentOffset.y >= fullyScrolledContentOffset) {
-//            
-//            // user is scrolling to the right from the last item to the 'fake' item 1.
-//            // reposition offset to show the 'real' item 1 at the left-hand end of the collection view
-//            if photosUrlArray.count>2{
-//                reversePhotoArray(photosUrlArray, startIndex: 0, endIndex: photosUrlArray.count - 1)
-//                reversePhotoArray(photosUrlArray, startIndex: 0, endIndex: 1)
-//                reversePhotoArray(photosUrlArray, startIndex: 2, endIndex: photosUrlArray.count - 1)
-//                var indexPath : NSIndexPath = NSIndexPath(forRow: 1, inSection: 0)
-//                infiniteScrollingCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: false)
-//            }
-//        }
-//        else if (scrollView.contentOffset.x == 0){
-//            
-//            if photosUrlArray.count>2{
-//                reversePhotoArray(photosUrlArray, startIndex: 0, endIndex: photosUrlArray.count - 1)
-//                reversePhotoArray(photosUrlArray, startIndex: 0, endIndex: photosUrlArray.count - 3)
-//                reversePhotoArray(photosUrlArray, startIndex: photosUrlArray.count - 2, endIndex: photosUrlArray.count - 1)
-//                var indexPath : NSIndexPath = NSIndexPath(forRow: photosUrlArray.count - 2, inSection: 0)
-//                infiniteScrollingCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: false)
-//            }
-//        }
-//    }
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate {
+            // Find pagination indicator & delegate
+            var paginationIndicator: UIActivityIndicatorView?
+            var paginationDelegate: PaginationDelegate?
+            
+            paginationDelegate = self.paginationDelegate
+            paginationIndicator = self.paginationIndicator
+            
+            let y = scrollView.contentOffset.y + scrollView.bounds.size.height
+            if y >= scrollView.contentSize.height && paginationIndicator != nil {
+                paginationDelegate?.fetchMoreItems(with: paginationIndicator!)
+
+            } else {
+                paginationIndicator?.stopAnimating()
+            }
+        }
+    }
+}
+// MARK: PaginationDelegate
+
+extension SearchViewController: PaginationDelegate {
+    
+    func fetchMoreItems(with activityIndicator: UIActivityIndicatorView) {
+
+        if let result = searchResult {
+            let nextPage = result.currentPage + 1
+            
+            if nextPage <= result.totalPages {
+                paginationIndicator.startAnimating()
+                if let currentKeyword = searchBar.text {
+                    fetchPhotos(with: currentKeyword, on: String(nextPage))
+                }
+            }
+        }
+        
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
-    func filterContentForSearchText(searchText:String) {
-//        self.dataSourceForSearchResult = self.dataSource?.filter({ (text:String) -> Bool in
-//            return text.contains(searchText)
-//        })
-    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.characters.count > 0 {
             // search and reload data source
             self.searchBarActive = true
-            let duration = DispatchTime.now() + 0.5
+            let duration = DispatchTime.now() + 1.2
             DispatchQueue.main.asyncAfter(deadline: duration) {
-                self.fetchPhotos(with: searchText)
+                self.fetchPhotos(with: searchText, on: "1")
             }
-            
-//            self.filterContentForSearchText(searchText: searchText)
-//            self.collectionView?.reloadData()
+        
         } else {
             
             self.searchBarActive = false

@@ -11,10 +11,11 @@ import Alamofire
 import UnboxedAlamofire
 
 typealias Completion = ([Photo]) -> ()
+typealias SearchResultCompletion = (SearchResult) -> ()
 
 final class PhotoAPI {
     
-    static let sharedInstance = PhotoAPI()
+    static let shared = PhotoAPI()
     
     private let apiBaseURL = "https://api.500px.com/v1/"
     
@@ -24,7 +25,7 @@ final class PhotoAPI {
     
     // MARK: Public methods
     
-    func searchPhotos(keyword term: String, page: String = "1", completion: Completion?) {
+    func search(keyword term: String, page: String = "1", completion: SearchResultCompletion?) {
         
         let urlParams = [
             "term": term,
@@ -35,7 +36,7 @@ final class PhotoAPI {
     
     // MARK: Convenience methods
     
-    private func get(endpoint: String, parameters: Parameters?, completion: Completion?) {
+    private func get(endpoint: String, parameters: Parameters?, completion: SearchResultCompletion?) {
         request(endpoint: endpoint,
                 method: .get,
                 encoding: URLEncoding.default,
@@ -45,7 +46,7 @@ final class PhotoAPI {
     }
     
 
-    private func post(endpoint: String, parameters: Parameters?, completion: Completion?) {
+    private func post(endpoint: String, parameters: Parameters?, completion: SearchResultCompletion?) {
         request(endpoint: endpoint,
                 method: .post,
                 encoding: JSONEncoding.default,
@@ -67,15 +68,15 @@ final class PhotoAPI {
         return params
     }
     
-    private func request(endpoint: String, method: HTTPMethod, encoding: ParameterEncoding, parameters: Parameters?, completion: Completion?) {
+    private func request(endpoint: String, method: HTTPMethod, encoding: ParameterEncoding, parameters: Parameters?, completion: SearchResultCompletion?) {
         
         let url = apiBaseURL + endpoint
         let urlParams = allParameters(parameters)
-        Alamofire.request(url, method: method, parameters: urlParams, encoding: encoding).validate(statusCode: 200..<300).responseArray(keyPath: "photos") { (response: DataResponse<[Photo]>) in
+        Alamofire.request(url, method: method, parameters: urlParams, encoding: encoding).validate(statusCode: 200..<300).responseObject { (response: DataResponse<SearchResult>) in
+            print("PhotoAPI: \(response.request?.url)")
             switch response.result {
-            case .success(let photos):
-                print("success: \(photos.count)")
-                completion?(photos)
+            case .success(let searchResult):
+                completion?(searchResult)
             case .failure(let error):
                 print("error: \(error)")
             }
