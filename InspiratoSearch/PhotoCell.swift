@@ -20,9 +20,9 @@ class PhotoCell: UICollectionViewCell {
         
         photoName.snp.makeConstraints {
             $0.centerX.equalTo(contentView.snp.centerX)
-            $0.centerY.equalTo(contentView.snp.centerY).offset(20.0)
-            $0.width.equalTo(contentView.snp.width)
-            $0.height.equalTo(20.0)
+            $0.centerY.equalTo(contentView.snp.centerY)
+//            $0.width.equalTo(contentView.snp.width)
+//            $0.height.equalTo(20.0)
         }
         
         photoImageView.snp.makeConstraints {

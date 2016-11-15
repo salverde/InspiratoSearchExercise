@@ -107,7 +107,7 @@ class SearchViewController: UICollectionViewController {
 //                    // add placeholder image with imageView extension
 //                    photoCell.photoImageView.af_setImage(withURL: url)
 //                }
-                let url = URL(string: "https://drscdn.500px.org/photo/132655431/q%3D50_w%3D140_h%3D140/ccc0ff25b58bda557dcc3bebfcbdec06?v=9")!
+                let url = URL(string: "https://drscdn.500px.org/photo/157877509/q%3D50_w%3D140_h%3D140/f8d675f6b731ff40f33097dae8a71f61?v=3")!
                 photoCell.photoImageView.af_setImage(withURL: url)
                 photoCell.photoName.text = self.dataSource![indexPath.row]
             }
