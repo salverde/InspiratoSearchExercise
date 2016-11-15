@@ -18,6 +18,7 @@
 		176F79781DD6E3E700522ABA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F79771DD6E3E700522ABA /* Extensions.swift */; };
 		176F797A1DD6E61400522ABA /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F79791DD6E61400522ABA /* AppAppearance.swift */; };
 		176F797F1DD705B700522ABA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F797E1DD705B700522ABA /* PhotoCell.swift */; };
+		17E8DCD31DD7B0D400B37E8C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8DCD21DD7B0D400B37E8C /* SearchViewController.swift */; };
 		EBE10A36ADC43E4A1A64AFF8 /* Pods_InspiratoSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		176F79771DD6E3E700522ABA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		176F79791DD6E61400522ABA /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		176F797E1DD705B700522ABA /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		17E8DCD21DD7B0D400B37E8C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiratoSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		D81DC0D4D83365F2DACB1B5F /* Pods-InspiratoSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				176F795C1DD53A5300522ABA /* ViewController.swift */,
+				17E8DCD21DD7B0D400B37E8C /* SearchViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				176F797F1DD705B700522ABA /* PhotoCell.swift in Sources */,
 				176F79701DD66F1900522ABA /* User.swift in Sources */,
 				176F79781DD6E3E700522ABA /* Extensions.swift in Sources */,
+				17E8DCD31DD7B0D400B37E8C /* SearchViewController.swift in Sources */,
 				176F796D1DD666C100522ABA /* Photo.swift in Sources */,
 				176F795D1DD53A5300522ABA /* ViewController.swift in Sources */,
 				176F79741DD6740F00522ABA /* PhotoAPI.swift in Sources */,

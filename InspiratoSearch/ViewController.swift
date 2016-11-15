@@ -89,7 +89,7 @@ extension ViewController: UICollectionViewDataSource {
                 let url = URL(string: imageURL)!
                 // TODO
                 // add placeholder image with imageView extension
-                photoCell.imageView.af_setImage(withURL: url)
+                photoCell.photoImageView.af_setImage(withURL: url)
             }
             cell = photoCell
         }
