@@ -22,6 +22,8 @@ final class PhotoAPI {
         "consumer_key": "L1Yj9o68dZub8KbSSYEdCrQG5G4tapkehKgqYVKt"
     ]
     
+    // MARK: Public methods
+    
     func searchPhotos(keyword term: String, page: String = "1", completion: Completion?) {
         
         let urlParams = [
@@ -31,7 +33,8 @@ final class PhotoAPI {
         get(endpoint: "photos/search", parameters: urlParams, completion: completion)
     }
     
-    // Convenience method to perform a GET request on an API endpoint.
+    // MARK: Convenience methods
+    
     private func get(endpoint: String, parameters: Parameters?, completion: Completion?) {
         request(endpoint: endpoint,
                 method: .get,
@@ -41,7 +44,7 @@ final class PhotoAPI {
         )
     }
     
-    // Convenience method to perform a POST request on an API endpoint.
+
     private func post(endpoint: String, parameters: Parameters?, completion: Completion?) {
         request(endpoint: endpoint,
                 method: .post,
@@ -51,7 +54,19 @@ final class PhotoAPI {
         )
     }
     
-    // Perform a request on an API endpoint using Alamofire.
+    private func allParameters(_ parameters: Parameters?) -> Parameters? {
+        var params = parameters
+        if params != nil {
+            // merge default params
+            for (key, value) in defaultParams {
+                params!.updateValue(value, forKey: key)
+            }
+        } else {
+            params = defaultParams
+        }
+        return params
+    }
+    
     private func request(endpoint: String, method: HTTPMethod, encoding: ParameterEncoding, parameters: Parameters?, completion: Completion?) {
         
         let url = apiBaseURL + endpoint
@@ -65,19 +80,5 @@ final class PhotoAPI {
                 print("error: \(error)")
             }
         }
-    }
-    
-    private func allParameters(_ parameters: Parameters?) -> Parameters? {
-        var params = parameters
-        if params != nil {
-            // Add default params
-            for (key, value) in defaultParams {
-                params!.updateValue(value, forKey: key)
-            }
-        } else {
-            params = defaultParams
-        }
-        
-        return params
     }
 }

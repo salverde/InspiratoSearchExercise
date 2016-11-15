@@ -75,17 +75,17 @@
 		176F79591DD53A5300522ABA /* InspiratoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				176F79661DD53A5300522ABA /* Info.plist */,
+				176F795A1DD53A5300522ABA /* AppDelegate.swift */,
+				176F79611DD53A5300522ABA /* Assets.xcassets */,
+				17F047AA1DDB02C900237E28 /* Extensions */,
+				176F79631DD53A5300522ABA /* LaunchScreen.storyboard */,
+				176F795E1DD53A5300522ABA /* Main.storyboard */,
+				176F796E1DD66F0C00522ABA /* Models */,
+				17F047AB1DDB02DE00237E28 /* Networking */,
+				17F047AC1DDB030300237E28 /* Utils */,
 				17E8DCD11DD782D800B37E8C /* ViewControllers */,
 				176F797D1DD7059400522ABA /* Views */,
-				176F796E1DD66F0C00522ABA /* Models */,
-				176F795A1DD53A5300522ABA /* AppDelegate.swift */,
-				176F795E1DD53A5300522ABA /* Main.storyboard */,
-				176F79611DD53A5300522ABA /* Assets.xcassets */,
-				176F79631DD53A5300522ABA /* LaunchScreen.storyboard */,
-				176F79661DD53A5300522ABA /* Info.plist */,
-				176F79731DD6740F00522ABA /* PhotoAPI.swift */,
-				176F79771DD6E3E700522ABA /* Extensions.swift */,
-				176F79791DD6E61400522ABA /* AppAppearance.swift */,
 			);
 			path = InspiratoSearch;
 			sourceTree = "<group>";
@@ -114,6 +114,30 @@
 				17E8DCD21DD7B0D400B37E8C /* SearchViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		17F047AA1DDB02C900237E28 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				176F79771DD6E3E700522ABA /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		17F047AB1DDB02DE00237E28 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				176F79731DD6740F00522ABA /* PhotoAPI.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		17F047AC1DDB030300237E28 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				176F79791DD6E61400522ABA /* AppAppearance.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		744764453127D4F72CA358BF /* Pods */ = {
