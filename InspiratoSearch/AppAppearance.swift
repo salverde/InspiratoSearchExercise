@@ -14,6 +14,7 @@ struct AppAppearance {
     static func navigationBar() {
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.barTintColor = UIColor.black
+        navigationAppearance.tintColor = UIColor.white
         navigationAppearance.isTranslucent = false
         navigationAppearance.titleTextAttributes = [
             NSForegroundColorAttributeName: UIColor.white,

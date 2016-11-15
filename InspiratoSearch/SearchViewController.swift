@@ -182,8 +182,10 @@ class SearchViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailPhotoSegue" {
             guard let indexPath = collectionView?.indexPath(for: sender as! PhotoCell) else { return }
-            
             if let detailController = segue.destination as? DetailViewController {
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
                 detailController.photoDetail = photos?[indexPath.row]
             }
         }

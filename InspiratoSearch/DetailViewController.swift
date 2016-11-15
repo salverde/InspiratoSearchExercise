@@ -6,17 +6,18 @@
 //  Copyright © 2016 Inspirato Inc. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SnapKit
 import AlamofireImage
 
 class DetailViewController: UIViewController {
     
-    
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
     
     var photoDetail: Photo!
     
@@ -30,7 +31,11 @@ class DetailViewController: UIViewController {
         detailImageView.af_setImage(withURL: url)
         
         titleLabel.text = photoDetail.name
-        descLabel.text = photoDetail.description
+        
+        if let user = photoDetail.user {
+            authorLabel.text = "Author: \(user.fullName)"
+        }
+        descLabel.text = photoDetail.description ?? "No Description"
         
     }
 
@@ -38,10 +43,6 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
+
 }
 
