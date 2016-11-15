@@ -179,6 +179,16 @@ class SearchViewController: UICollectionViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailPhotoSegue" {
+            guard let indexPath = collectionView?.indexPath(for: sender as! PhotoCell) else { return }
+            
+            if let detailController = segue.destination as? DetailViewController {
+                detailController.photoDetail = photos?[indexPath.row]
+            }
+        }
+    }
+    
 //    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 //        // Calculate where the collection view should be at the right-hand end item
 //        let fullyScrolledContentOffset: CGFloat = (collectionView?.frame.size.height)! * CGFloat(dataSource!.count - 1)
