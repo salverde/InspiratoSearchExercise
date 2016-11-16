@@ -41,8 +41,15 @@ class SearchViewController: UICollectionViewController {
         return loader
     }()
     
-    var searchResult: SearchResult?
-    var photos: [Photo]?
+    var photos: [Photo] = []
+    
+    var searchResult: SearchResult? {
+        didSet {
+            if let photos = searchResult?.photos {
+                self.photos.append(contentsOf: photos)
+            }
+        }
+    }
     
     var paginationDelegate: PaginationDelegate?
     
@@ -61,12 +68,7 @@ class SearchViewController: UICollectionViewController {
         paginationDelegate = self
         
         addSearchBar()
-        addObservers()
         addRefreshControl()
-    }
-
-    deinit{
-        self.removeObservers()
     }
     
     func addSearchBar() {
@@ -101,10 +103,8 @@ class SearchViewController: UICollectionViewController {
     func fetchPhotos(with term: String, on page: String) {
         startRefreshControl()
         PhotoAPI.shared.search(keyword: term, page: page) {
-            if let photos = $0.photos {
-                self.photos = photos
-            }
             self.searchResult = $0
+            
             self.collectionView?.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -117,7 +117,7 @@ class SearchViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos?.count ?? 0
+        return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -125,20 +125,35 @@ class SearchViewController: UICollectionViewController {
         var cell = PhotoCell()
         if let photoCell: PhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell {
             
-            if let title = photos?[indexPath.row].name {
-                photoCell.photoName.text = title
-            }
-            if let imageURL = photos?[indexPath.row].imageURL {
-                let url = URL(string: imageURL)!
+//            if let title = photos[indexPath.row].name {
+                photoCell.photoName.text = photos[indexPath.row].name
+//            }
+//            if let imageURL = photos[indexPath.row].imageURL {
+                let url = URL(string: photos[indexPath.row].imageURL)!
                 // TODO
                 // add placeholder image with imageView extension
                 photoCell.photoImageView.af_setImage(withURL: url)
-            }
+//            }
         
             cell = photoCell
         }
         return cell
     }
+    
+//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+//        
+//        let reusableView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reusableView", for: indexPath as IndexPath)
+//        
+//        
+//        if kind == UICollectionElementKindSectionFooter {
+//            reusableView.backgroundColor = UIColor.clear
+//            
+//            if self.paginationDelegate != nil {
+//                reusableView.addSubview(self.paginationIndicator)
+//            }
+//        }
+//        return reusableView
+//    }
     
     // MARK: UICollectionViewDelegateFlowLayout
     
@@ -154,30 +169,12 @@ class SearchViewController: UICollectionViewController {
         return CGSize(width: cellGridSize, height: cellGridSize)
     }
     
-    // MARK: KVO
-    
-    func addObservers() {
-        let context = UnsafeMutablePointer<UInt8>(bitPattern: 1)
-        self.collectionView?.addObserver(self, forKeyPath: "contentOffset", options: [.new, .old], context: context)
-    }
-    
-    func removeObservers() {
-        self.collectionView?.removeObserver(self, forKeyPath: "contentOffset")
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if let keypath = keyPath, keypath == "contentOffset" {
-            if let collectionView: UICollectionView = object as? UICollectionView {
-                let searchBarBoundsY = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-                searchBar.frame = CGRect(
-                    x: searchBar.frame.origin.x,
-                    y: searchBarBoundsY + ( (-1 * collectionView.contentOffset.y) - searchBarBoundsY),
-                    width: searchBar.frame.size.width,
-                    height: searchBar.frame.size.height
-                )
-            }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+
+        if self.paginationDelegate != nil {
+            return CGSize(width: collectionView.bounds.size.width, height: self.paginationIndicator.bounds.size.height)
         }
+        return CGSize.zero
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -187,8 +184,23 @@ class SearchViewController: UICollectionViewController {
                 let backItem = UIBarButtonItem()
                 backItem.title = ""
                 navigationItem.backBarButtonItem = backItem
-                detailController.photoDetail = photos?[indexPath.row]
+                detailController.photoDetail = photos[indexPath.row]
             }
+        }
+    }
+    
+    // MARK: UIScrollViewDelegate
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if let collectionView: UICollectionView = scrollView as? UICollectionView {
+            let searchBarBoundsY = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+            searchBar.frame = CGRect(
+                x: searchBar.frame.origin.x,
+                y: searchBarBoundsY + ( (-1 * collectionView.contentOffset.y) - searchBarBoundsY),
+                width: searchBar.frame.size.width,
+                height: searchBar.frame.size.height
+            )
         }
     }
     
@@ -227,25 +239,21 @@ extension SearchViewController: PaginationDelegate {
                 }
             }
         }
-        
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.characters.count > 0 {
-            // search and reload data source
             self.searchBarActive = true
-            let duration = DispatchTime.now() + 1.2
-            DispatchQueue.main.asyncAfter(deadline: duration) {
-                self.fetchPhotos(with: searchText, on: "1")
-            }
+//            let duration = DispatchTime.now() + 0.8
+//            DispatchQueue.main.asyncAfter(deadline: duration) {
+//                self.fetchPhotos(with: searchText, on: "1")
+//            }
         
         } else {
-            
             self.searchBarActive = false
             self.collectionView?.reloadData()
         }
@@ -258,6 +266,11 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBarActive = true
+        
+        if let keyword = searchBar.text {
+            self.fetchPhotos(with: keyword, on: "1")
+        }
+        
         self.view.endEditing(true)
     }
     
@@ -273,6 +286,6 @@ extension SearchViewController: UISearchBarDelegate {
         self.searchBarActive = false
         searchBar.resignFirstResponder()
         searchBar.text = ""
-        photos?.removeAll()
+        photos.removeAll()
     }
 }
