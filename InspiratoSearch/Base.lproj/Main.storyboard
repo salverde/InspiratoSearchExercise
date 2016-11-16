@@ -54,7 +54,7 @@
                                 <connections>
                                     <outlet property="photoImageView" destination="Xb2-Ap-E29" id="vNe-xz-XLD"/>
                                     <outlet property="photoName" destination="ney-7T-2g8" id="ScV-Ua-TCq"/>
-                                    <segue destination="ggh-er-AOc" kind="push" identifier="detailPhotoSegue" id="kyC-M6-hwh"/>
+                                    <segue destination="ggh-er-AOc" kind="show" identifier="detailPhotoSegue" id="kyC-M6-hwh"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

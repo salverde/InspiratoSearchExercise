@@ -56,7 +56,6 @@ class SearchViewController: UICollectionViewController {
     
     var paginationIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        
         indicator.bounds.size.height = 65
         return indicator
     }()
@@ -98,11 +97,11 @@ class SearchViewController: UICollectionViewController {
     }
     
     func refreshControlAction() {
-        self.cancelSearching()
         let duration = DispatchTime.now() + 0.5
         DispatchQueue.main.asyncAfter(deadline: duration) {
-            self.collectionView?.reloadData()
-            self.refreshControl.endRefreshing()
+            if let currentKeyword = self.searchBar.text {
+                self.fetchPhotos(with: currentKeyword, on: "1")
+            }
         }
     }
     
