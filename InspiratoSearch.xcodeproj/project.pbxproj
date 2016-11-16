@@ -20,6 +20,7 @@
 		176F797F1DD705B700522ABA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F797E1DD705B700522ABA /* PhotoCell.swift */; };
 		17E8DCD31DD7B0D400B37E8C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8DCD21DD7B0D400B37E8C /* SearchViewController.swift */; };
 		17F047AE1DDBB34D00237E28 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F047AD1DDBB34D00237E28 /* SearchResult.swift */; };
+		17F047B01DDC097E00237E28 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F047AF1DDC097E00237E28 /* CollectionReusableView.swift */; };
 		EBE10A36ADC43E4A1A64AFF8 /* Pods_InspiratoSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		176F797E1DD705B700522ABA /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		17E8DCD21DD7B0D400B37E8C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		17F047AD1DDBB34D00237E28 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		17F047AF1DDC097E00237E28 /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		37174E6FF0920DA1847677D8 /* Pods_InspiratoSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiratoSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCBAB8B6691DBD5520E4AF /* Pods-InspiratoSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		D81DC0D4D83365F2DACB1B5F /* Pods-InspiratoSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiratoSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InspiratoSearch/Pods-InspiratoSearch.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,14 +79,15 @@
 		176F79591DD53A5300522ABA /* InspiratoSearch */ = {
 			isa = PBXGroup;
 			children = (
-				176F79661DD53A5300522ABA /* Info.plist */,
 				176F795A1DD53A5300522ABA /* AppDelegate.swift */,
 				176F79611DD53A5300522ABA /* Assets.xcassets */,
 				17F047AA1DDB02C900237E28 /* Extensions */,
+				176F79661DD53A5300522ABA /* Info.plist */,
 				176F79631DD53A5300522ABA /* LaunchScreen.storyboard */,
 				176F795E1DD53A5300522ABA /* Main.storyboard */,
 				176F796E1DD66F0C00522ABA /* Models */,
 				17F047AB1DDB02DE00237E28 /* Networking */,
+				17F047B11DDC1F9600237E28 /* Protocols */,
 				17F047AC1DDB030300237E28 /* Utils */,
 				17E8DCD11DD782D800B37E8C /* ViewControllers */,
 				176F797D1DD7059400522ABA /* Views */,
@@ -106,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				176F797E1DD705B700522ABA /* PhotoCell.swift */,
+				17F047AF1DDC097E00237E28 /* CollectionReusableView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -141,6 +145,13 @@
 				176F79791DD6E61400522ABA /* AppAppearance.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		17F047B11DDC1F9600237E28 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		744764453127D4F72CA358BF /* Pods */ = {
@@ -284,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				176F797F1DD705B700522ABA /* PhotoCell.swift in Sources */,
+				17F047B01DDC097E00237E28 /* CollectionReusableView.swift in Sources */,
 				176F79701DD66F1900522ABA /* User.swift in Sources */,
 				17F047AE1DDBB34D00237E28 /* SearchResult.swift in Sources */,
 				176F79781DD6E3E700522ABA /* Extensions.swift in Sources */,

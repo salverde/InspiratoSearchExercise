@@ -20,7 +20,8 @@ protocol PaginationDelegate {
 
 class SearchViewController: UICollectionViewController {
     
-    private let reuseIdentifier: String = "PhotoCell"
+    private let reuseIdentifierCell: String = "PhotoCell"
+    private let reuseIdentifierFooter: String = "FooterView"
     private let detailSegue: String = "detailPhotoSegue"
     
     var searchBarActive: Bool = false
@@ -61,11 +62,16 @@ class SearchViewController: UICollectionViewController {
     }()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "navbar-logo"))
         
         searchBar.delegate = self
         paginationDelegate = self
+        
+        self.collectionView?.register(CollectionReusableView.self,
+                                      forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                                      withReuseIdentifier: reuseIdentifierFooter)
         
         addSearchBar()
         addRefreshControl()
@@ -105,6 +111,8 @@ class SearchViewController: UICollectionViewController {
         PhotoAPI.shared.search(keyword: term, page: page) {
             self.searchResult = $0
             
+            // TODO
+            // on pagination (only) insertInto collectionView rather then full reload!
             self.collectionView?.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -121,39 +129,36 @@ class SearchViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         var cell = PhotoCell()
-        if let photoCell: PhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell {
+        if let photoCell: PhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierCell, for: indexPath) as? PhotoCell {
+            photoCell.photoName.text = photos[indexPath.row].name
+
+            let url = URL(string: photos[indexPath.row].imageURL)!
+            // TODO
+            // add placeholder image with imageView extension
+            photoCell.photoImageView.af_setImage(withURL: url)
             
-//            if let title = photos[indexPath.row].name {
-                photoCell.photoName.text = photos[indexPath.row].name
-//            }
-//            if let imageURL = photos[indexPath.row].imageURL {
-                let url = URL(string: photos[indexPath.row].imageURL)!
-                // TODO
-                // add placeholder image with imageView extension
-                photoCell.photoImageView.af_setImage(withURL: url)
-//            }
-        
             cell = photoCell
         }
         return cell
     }
     
-//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-//        
-//        let reusableView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reusableView", for: indexPath as IndexPath)
-//        
-//        
-//        if kind == UICollectionElementKindSectionFooter {
-//            reusableView.backgroundColor = UIColor.clear
-//            
-//            if self.paginationDelegate != nil {
-//                reusableView.addSubview(self.paginationIndicator)
-//            }
-//        }
-//        return reusableView
-//    }
+     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifierFooter, for: indexPath)
+        
+        if kind == UICollectionElementKindSectionFooter {
+            reusableView.backgroundColor = UIColor.clear
+            
+            if self.paginationDelegate != nil {
+                reusableView.addSubview(self.paginationIndicator)
+                self.paginationIndicator.snp.makeConstraints {
+                    $0.width.equalTo(reusableView)
+                }
+            }
+        }
+        return reusableView
+    }
     
     // MARK: UICollectionViewDelegateFlowLayout
     
@@ -282,6 +287,7 @@ extension SearchViewController: UISearchBarDelegate {
         self.searchBarActive = false
         searchBar.setShowsCancelButton(false, animated: false)
     }
+    
     func cancelSearching() {
         self.searchBarActive = false
         searchBar.resignFirstResponder()
