@@ -49,6 +49,7 @@ class SearchViewController: UICollectionViewController {
             if let photos = searchResult?.photos {
                 self.photos.append(contentsOf: photos)
             }
+            self.emptyStateView.isHidden = (searchResult?.totalItems)! > 0 ? true : false
         }
     }
     
@@ -58,6 +59,15 @@ class SearchViewController: UICollectionViewController {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         indicator.bounds.size.height = 65
         return indicator
+    }()
+    
+    var emptyStateView: UIImageView = {
+        let emptyState = UIImageView(image: UIImage(named: "search-results-empty-state"))
+        emptyState.snp.makeConstraints {
+            $0.size.equalTo(CGSize(width: 236.0, height: 247.0))
+        }
+        emptyState.isHidden = false
+        return emptyState
     }()
     
     override func viewDidLoad() {
@@ -74,6 +84,15 @@ class SearchViewController: UICollectionViewController {
         
         addSearchBar()
         addRefreshControl()
+        addEmptyState()
+    }
+    
+    func addEmptyState() {
+        view.addSubview(emptyStateView)
+        emptyStateView.snp.makeConstraints {
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.centerY.equalTo(view.snp.centerY)
+        }
     }
     
     func addSearchBar() {
@@ -284,9 +303,10 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func cancelSearching() {
-        self.searchBarActive = false
+        searchBarActive = false
         searchBar.resignFirstResponder()
         searchBar.text = ""
         photos.removeAll()
+        emptyStateView.isHidden = photos.count > 0 ? true : false
     }
 }
