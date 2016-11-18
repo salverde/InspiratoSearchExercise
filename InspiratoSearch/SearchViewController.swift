@@ -111,6 +111,9 @@ class SearchViewController: UICollectionViewController {
     
     func startRefreshControl() {
         if refreshControl.isRefreshing == false {
+            if let collectionView = self.collectionView {
+                collectionView.contentOffset = CGPoint(x: 0, y: -refreshControl.frame.size.height)
+            }
             refreshControl.beginRefreshing()
         }
     }
