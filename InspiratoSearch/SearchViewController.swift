@@ -241,19 +241,13 @@ class SearchViewController: UICollectionViewController {
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate {
-            // Find pagination indicator & delegate
-            var paginationIndicator: UIActivityIndicatorView?
-            var paginationDelegate: PaginationDelegate?
-            
-            paginationDelegate = self.paginationDelegate
-            paginationIndicator = self.paginationIndicator
             
             let y = scrollView.contentOffset.y + scrollView.bounds.size.height
-            if y >= scrollView.contentSize.height && paginationIndicator != nil {
-                paginationDelegate?.fetchMoreItems(with: paginationIndicator!)
+            if y >= scrollView.contentSize.height {
+                self.paginationDelegate?.fetchMoreItems(with: self.paginationIndicator)
 
             } else {
-                paginationIndicator?.stopAnimating()
+                self.paginationIndicator.stopAnimating()
             }
         }
     }
