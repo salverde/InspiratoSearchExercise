@@ -111,7 +111,7 @@ class SearchViewController: UICollectionViewController {
             self.searchResult = $0
             
             // TODO
-            // on pagination (only) insertInto collectionView rather then full reload!
+            // on pagination (only) insertInto collectionView rather then reload!
             self.collectionView?.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -201,7 +201,7 @@ class SearchViewController: UICollectionViewController {
             let searchBarBoundsY = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
             searchBar.frame = CGRect(
                 x: searchBar.frame.origin.x,
-                y: searchBarBoundsY + ( (-1 * collectionView.contentOffset.y) - searchBarBoundsY),
+                y: searchBarBoundsY + ((-1 * collectionView.contentOffset.y) - searchBarBoundsY),
                 width: searchBar.frame.size.width,
                 height: searchBar.frame.size.height
             )
@@ -227,6 +227,7 @@ class SearchViewController: UICollectionViewController {
         }
     }
 }
+
 // MARK: PaginationDelegate
 
 extension SearchViewController: PaginationDelegate {
@@ -252,11 +253,6 @@ extension SearchViewController: UISearchBarDelegate {
         
         if searchText.characters.count > 0 {
             self.searchBarActive = true
-//            let duration = DispatchTime.now() + 0.8
-//            DispatchQueue.main.asyncAfter(deadline: duration) {
-//                self.fetchPhotos(with: searchText, on: "1")
-//            }
-        
         } else {
             self.searchBarActive = false
             self.collectionView?.reloadData()

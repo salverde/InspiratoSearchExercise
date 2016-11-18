@@ -45,7 +45,6 @@ final class PhotoAPI {
         )
     }
     
-
     private func post(endpoint: String, parameters: Parameters?, completion: SearchResultCompletion?) {
         request(endpoint: endpoint,
                 method: .post,
