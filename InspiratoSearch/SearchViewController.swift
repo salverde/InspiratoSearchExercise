@@ -91,7 +91,7 @@ class SearchViewController: UICollectionViewController {
         view.addSubview(emptyStateView)
         emptyStateView.snp.makeConstraints {
             $0.centerX.equalTo(view.snp.centerX)
-            $0.centerY.equalTo(view.snp.centerY)
+            $0.top.equalTo(topLayoutGuide.snp.bottom).offset(80.0)
         }
     }
     
