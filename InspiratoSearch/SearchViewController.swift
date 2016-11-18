@@ -131,12 +131,21 @@ class SearchViewController: UICollectionViewController {
         startRefreshControl()
         PhotoAPI.shared.search(keyword: term, page: page) {
             self.searchResult = $0
-            
-            // TODO
-            // on pagination (only) insertInto collectionView rather then reload!
+            // self.insertNewItems()
             self.collectionView?.reloadData()
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    private func insertNewItems() {
+        // TODO
+        // on pagination insertInto collectionView rather then reload!
+        self.collectionView?.performBatchUpdates({
+            // insertItems
+            self.collectionView?.insertItems(at: [IndexPath(item: self.photos.count, section: 0)])
+            }, completion: { _ in
+                self.collectionView?.reloadData()
+        })
     }
     
     // MARK: UICollectionViewDataSource
@@ -288,11 +297,12 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBarActive = true
-        
+        if !photos.isEmpty {
+            self.photos.removeAll() // empty photos when searching again
+        }
         if let keyword = searchBar.text {
             self.fetchPhotos(with: keyword, on: "1")
         }
-        
         self.view.endEditing(true)
     }
     
