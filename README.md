@@ -16,8 +16,9 @@ Unbox and Alamofire in Swift 3
 
 ---
 
-_This simple example spawned from a coding exercise I did while interviewing for an iOS Developer position at [Inspirato](https://www.inspirato.com/employment/careers)..._
-##### Inspirato Coding Exercise (iOS Developer position)
+#### [Inspirato](https://www.inspirato.com/employment/careers) Coding Exercise
+
+_This basic example came from a coding exercise I did while interviewing for an **iOS Developer position** at Inspirato_
 
 The reason I made this exercise a public repo is not to provide other candidates that may not be qualified a solution, but rather to provide an example of using [Unbox](https://github.com/JohnSundell/Unbox) with [Alamofire](https://github.com/serejahh/UnboxedAlamofire) in Swift 3! Plus I had fun doing it!
 
