@@ -1,4 +1,4 @@
-Unbox and Alamofire in Swift 3 (Simple Example)
+Unbox and Alamofire in Swift 3
 ===
 
 **Project dependencies and setup**
@@ -15,10 +15,13 @@ Unbox and Alamofire in Swift 3 (Simple Example)
 * Cocoapods (1.1.1) - `pod install`
 
 ---
-_This example spawned from a coding exercise I did long time ago..._
+
+_This simple example spawned from a coding exercise I did while interviewing for an iOS Developer position at [Inspirato](https://www.inspirato.com/employment/careers)..._
 ##### Inspirato Coding Exercise (iOS Developer position)
-The reason I made this exercise a public repo is not to help other candidates that may not be qualified but rather to provide an  example of using [Unbox](https://github.com/JohnSundell/Unbox) with [Alamofire](https://github.com/serejahh/UnboxedAlamofire) in Swift 3!
-IMO I think this is a very simple/clean solution to a very common task iOS developers face regularly. The serialization is handled very nicely as property types are automatically detected and decoded. All missing or mismatched values are gracefully handled through a single exception type, making error handling super simple!
+
+The reason I made this exercise a public repo is not to provide other candidates that may not be qualified a solution, but rather to provide an example of using [Unbox](https://github.com/JohnSundell/Unbox) with [Alamofire](https://github.com/serejahh/UnboxedAlamofire) in Swift 3! Plus I had fun doing it!
+
+**IMO** I think this is a very simple/clean solution to a very common task iOS developers face regularly. The serialization is handled very nicely as property types are automatically detected and decoded. All missing or mismatched values are gracefully handled through a single exception type, making error handling super simple!
 Your models aren't saturated with optional properties, that you later have to unwrap, guard or add more LOC at some point.
 And best of all its a light weight solution that you can use with your protocol oriented swift apps!
 
