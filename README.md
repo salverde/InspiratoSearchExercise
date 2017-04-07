@@ -1,12 +1,19 @@
-![launch-banner.png](https://bitbucket.org/repo/x4XoAp/images/3067540569-launch-banner.png)
+## README
+===
 
-## README ##
-
-### Project tools and setup ###
+### Project tools, dependencies, and setup
 
 * Xcode 8
 * Swift 3
+
+* Alamofire (HTTP networking lib)
+* Unbox (Swift JSON decoder)
+* UnboxedAlamofire (Custom Response Serializer for Unbox)
+* AlamofireImage (Image response serializer for Alamofire)
+* SnapKit (Swift Autolayout DSL)
+
+* Git `git clone git@github.com:salomoko/InspiratoSearchExercise.git`
 * Cocoapods (1.1.1) - `pod install`
-* Git (git@bitbucket.org:salomoko/inspiratosearch.git)
+
 
 
